@@ -1,0 +1,110 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block titlepage %}
+    لیست کنسرت ها
+{% endblock %}
+
+<li><a class="btn btn-success">پروفایل</a></li>
+
+{% block mainContent %}
+    <form action="" method="GET">
+        {{ searchForm1 }}
+        <button type="submit" class="btn btn-success">جستجو</button>
+    </form>
+    {% if concertlist %}
+{#        <form action="" method="GET"> {# به بیرون از if منتقلش کردم تا در صورت نداشتن جواب باکس سرچ نشان داده شود #}
+{#            {{ searchForm1 }}#}
+{#            <button type="submit" class="btn btn-success">جستجو</button>#}
+{#        </form>#}
+        {% for concert in concertlist %}
+            <div class="col-md-2">
+                <div class="btn-success">
+{#                <a href="ticketSales/concert/{{ concert.id }}">#}
+        {# چون در اول آدرس href فوق اسلش(/) نگداشتیم معنایش این بود که این تکه آدرس به انتهای آدرس صفحه اصلی (که #}
+        {# در آن بر روی عکس کنسرت کلیک می کند) اضافه می کند و این آدرس غلط است ولی اگر اولش اسلش بگداریم معنایش  #}
+        {# می شود هر جای آدرس href با آدرس صفحه اصلی مشترک بود مشترکها را حذف کن و مابقی را قرار بده که آدرس درست #}
+        {# همین آدرس است (صفحه اصلی همان صفحه ای است که لیست کنسرت ها را نشان می دهد) #}
+{# آدرس صفحه اصلی: 'ticketSales/concert/list' و آدرس غلط (جزییات هر کنسرت)پاس داده شده: "ticketSales/concert/{{ concert.id }}" #}
+                    <a href="/ticketSales/concert/{{ concert.id }}">
+                        <div class="imageBox">
+                            <img id="s20" src="{{ concert.poster.url }}">
+                            {{ concert }}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+
+
+{#{% extends "ticketSales/layout.html" %}#}
+{##}
+{#{% block titlepage %}#}
+{#    لیست کنسرت ها#}
+{#{% endblock %}#}
+{##}
+{#<li><a class="btn btn-success">پروفایل</a></li>#}
+{##}
+{#{% block mainContent %}#}
+{#    {% if concertlist %}#}
+{#        {% for concert in concertlist %}#}
+{#            <div class="col-md-2">#}
+{#                <a href="ticketSales/concert/{{ concert.id }}">#}
+{#                    <div class="imageBox">#}
+{#                        <img id="s20" src="{{ concert.poster.url }}"  class="btn-success">#}
+{#                        <div>{{ concert }}</div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#{% endblock %}#}
+
+
+
+
+{#{% load static %}#}
+{#<!DOCTYPE html>#}
+{#<html dir="rtl">#}
+{#    <head>#}
+{#        <title>سامانه فروش بلیط کنسرت</title>#}
+    {#    <link rel="stylesheet" type="text/css" href="/static/ticketSales/css/style.css">#}
+    {# برای اینکه اگر بعدها مسیر پوشه استاتیک را تغییر دادیم نخواهیم در فایل html بگردیم لینکها را دانه دانه تغییر بدهیم #}
+    {# کد خط بالا را به صورت خط زیر می نویسیم #}
+{#        <link rel="stylesheet" type="text/css" href="{% static 'ticketSales/css/bootstrap.css' %}">#}
+{#        <link rel="stylesheet" type="text/css" href="{% static 'ticketSales/css/fontawesome.min.css' %}">#}
+{#        <link rel="stylesheet" type="text/css" href="{% static 'ticketSales/css/style.css' %}">#}
+{#    </head>#}
+{#    <body>#}
+{#        <div class="container">#}
+{#            <div class="row box">#}
+{#                <h1>لیست کنسرت ها</h1>#}
+{#                <ul class="btnul">#}
+{#                    <li><a class="btn btn-success">پروفایل</a></li>#}
+{#                    <li><a class="btn btn-success">صفحه اصلی</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                {% if concertlist %}#}
+{#                    {% for concert in concertlist %}#}
+{#                        <div>#}
+{#                            <a>#}
+{#                                <div class="imageBox">#}
+{#                                    <img id="s20" src="{{ concert.poster.url }}" alt="concert poster">#}
+{#                                    {{ concert }}#}
+{#                                </div>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </body>#}
+{#    <script src="{% static 'ticketSales/js/jquery-3.7.1.min.js' %}"></script>#}
+{#    <script src="{% static 'ticketSales/js/bootstrap.bundle.js' %}"></script>#}
+{#    <script src="{% static 'ticketSales/js/fontawesome.js' %}"></script>#}
+{#    <script src="{% static 'ticketSales/js/main.js' %}"></script>#}
+{#</html>#}

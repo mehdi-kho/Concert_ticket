@@ -1,0 +1,55 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block titlepage %}
+    جزییات کنسرت {{ concertdetail.name }}
+{% endblock %}
+
+{% block mainContent %}
+    {% if user.is_authenticated %}
+        <div class="col-md-10">
+            <h3> نام کنسرت : {{ concertdetail.name }}</h3>
+            <h3> خواننده کنسرت : {{ concertdetail.singer_name }}</h3>
+            <h3> مدت زمان کنسرت : {{ concertdetail.length }} دقیقه</h3>
+        </div>
+        <div class="col-md-2">
+            <div class="imageBox">
+                <img src="{{ concertdetail.poster.url }}">
+            </div>
+            <a href="/ticketSales/concertedit/{{ concertdetail.id }}" class="btn btn-success">ویرایش</a>
+        </div>
+    {% else %}
+        <div class="col-md-10">
+            <h3> نام کنسرت : {{ concertdetail.name }}</h3>
+            <h3> خواننده کنسرت : {{ concertdetail.singer_name }}</h3>
+            <h3> مدت زمان کنسرت : {{ concertdetail.length }} دقیقه</h3>
+        </div>
+        <div class="col-md-2">
+            <div class="imageBox">
+                <img src="{{ concertdetail.poster.url }}">
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+
+{#{% extends "ticketSales/layout.html" %}#}
+{#{% block titlepage %}#}
+{#    جزییات کنسرت {{ concertdetail.name }}#}
+{#{% endblock %}#}
+{##}
+{#{% block mainContent %}#}
+{#    <div class="col-md-10">#}
+{#        <h3> نام کنسرت : {{ concertdetail.name }}</h3>#}
+{#        <h3> خواننده کنسرت : {{ concertdetail.singer_name }}</h3>#}
+{#        <h3> مدت زمان کنسرت : {{ concertdetail.length }} دقیقه</h3>#}
+{#        <h3> مکان کنسرت : {{ location.address }}</h3>#}
+{#    </div>#}
+{#    <div class="col-md-2">#}
+{#        <div class="imageBox">#}
+{#            <img src="{{ concertdetail.poster.url }}">#}
+{#        </div>#}
+{#        <a href="/ticketSales/concertedit/{{ concertdetail.id }}" class="btn btn-success">ویرایش</a>#}
+{#    </div>#}
+{#{% endblock %}#}

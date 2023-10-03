@@ -1,0 +1,41 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block titlepage %}
+    لیست سانس ها
+{% endblock %}
+
+<li><a class="btn btn-success">پروفایل</a></li>
+
+{% block mainContent %}
+    {% if timelist %}
+        {% for time in timelist %}
+            <div class="col-md-2">
+                <div class="btn-success">
+                    <a>
+{#                    <a href="/ticketSales/concert/{{ concert.id }}">#}
+                        <div class="timeBox">
+                            <h2>{{ time.concertModel.name }}</h2>
+                            <p>{{ time.concertModel.singer_name }}</p>
+                            <p>{{ time.locationModel.name }}</p>
+                            <p>{{ time.get_jalali_date }}</p> {# https://github.com/a-roomana/django-jalali-date #}
+                            <div class=
+                               "{% if time.status == time.start %}
+                                    btn btn-success
+                                {% elif time.status == time.end %}
+                                    btn btn-danger
+                                {% elif time.status == time.cansel %}
+                                    btn default
+                                {% elif time.status == time.sale %}
+                                    btn btn-primary
+                                {% endif %}"
+                            >
+                                {{ time.get_status_display }} {# برای نمایش وضعیت status (در مدل تایم هست)به کار می رود #}
+                                 {# status = models.IntegerField(choices=status_choices) #}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
